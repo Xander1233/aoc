@@ -1,4 +1,3 @@
-use std::cmp::min;
 use std::thread;
 use std::thread::JoinHandle;
 
@@ -14,15 +13,11 @@ fn main() {
 
     let mut seeds: Vec<u64> = Vec::new();
 
-    let mut handlers: Vec<JoinHandle<Vec<u64>>> = Vec::new();
-
     for i in seeds_string {
         seeds.push(i);
     }
 
     let mut lowest = u64::MAX;
-
-    println!("{} {:?}", lowest, seeds);
 
     let mut handlers: Vec<JoinHandle<u64>> = Vec::new();
 
@@ -32,8 +27,6 @@ fn main() {
 
         let thr = thread::spawn(move || -> u64 {
             let res = calc(&seed, &map);
-
-            println!("{}", res);
 
             res
         });
@@ -47,8 +40,6 @@ fn main() {
         if thr_result < lowest {
             lowest = thr_result;
         }
-
-        println!("{}", lowest);
     }
 
     println!("{}", lowest);

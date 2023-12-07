@@ -38,8 +38,6 @@ fn main() {
         });
     }
 
-    // println!("{}", _question1(&cards));
-
     println!("{}", question2(&mut cards))
 }
 
